@@ -1,6 +1,10 @@
 public class Primes {
     public static void main(String[] args) {
-        int n = 30;
+
+    }
+
+    public static void printPrimesUpTo(int n) {
+
         boolean isPrime[] = new boolean[n + 1];
 
         for (int i = 2; i <= n; i++) {
@@ -32,7 +36,7 @@ public class Primes {
             }
         }
         System.out.println(
-                "There are " + count + " primes between 2 and " + n + " (" + (count * 100 / n) + "%  are primes)");
+                "There are " + count + " primes between 2 and " + n + " (" + (count * 100 / n) + "% are primes)");
 
     }
 }

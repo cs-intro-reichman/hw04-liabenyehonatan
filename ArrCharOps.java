@@ -195,17 +195,18 @@ public class ArrCharOps {
 
         for (int i = 0; i < minLength; i++) {
             if (str1.charAt(i) > str2.charAt(i)) {
-                return (1);
+                return str1.charAt(i) - str2.charAt(i);
             }
             if (str1.charAt(i) < str2.charAt(i)) {
-                return (-1);
+                return str1.charAt(i) - str2.charAt(i);
             }
         }
         if (str1.length() > str2.length()) {
-            return 1;
+            return str1.length() - str2.length();
+
         }
         if (str1.length() < str2.length()) {
-            return -1;
+            return str1.length() - str2.length();
         }
 
         return 0;
