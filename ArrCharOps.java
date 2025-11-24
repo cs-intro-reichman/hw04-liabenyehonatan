@@ -135,29 +135,27 @@ public class ArrCharOps {
         return newArr;
     }
 
-    /**
-     * Returns a single integer that represents the given array. This integer is
-     * sometimes
-     * referred to as the array's "hash code". Later in the course we'll explain
-     * what these
-     * hash codes are used for. For now, simply implement the specification given
-     * below.
-     * The hash code is computed as: arr[0]*7^(n-1) + arr[1]*7^(n-2) + ... +
-     * arr[n-2]*7 + arr[n-1]
-     * where arr[i] is the i'th character of the array, and n is the array's length.
-     * The hash value of an empty array is zero.
-     */
     public static long hashCode(char[] arr) {
 
         long sum = 0;
         if (arr.length == 0) {
             return 0;
         }
-        for (int i = 0; i < arr.length; i++) {
-            sum += (long) arr[i] * Math.pow(7, arr.length - 1 - i);
+
+        int n = arr.length;
+        int base = 7;
+
+        for (int i = 0; i < n; i++) {
+            int exponent = n - 1 - i;
+
+            long powerOf7 = 1;
+            for (int j = 0; j < exponent; j++) {
+                powerOf7 *= base;
+            }
+
+            sum += (long) arr[i] * powerOf7;
         }
         return sum;
-
     }
 
     /**
@@ -191,22 +189,29 @@ public class ArrCharOps {
      */
     public static int compareTo(String str1, String str2) {
 
+        if (str1.length() == 0 || str2.length() == 0) {
+            return -2;
+        }
+
         int minLength = Math.min(str1.length(), str2.length());
 
         for (int i = 0; i < minLength; i++) {
-            if (str1.charAt(i) > str2.charAt(i)) {
-                return str1.charAt(i) - str2.charAt(i);
+            char char1 = str1.charAt(i);
+            char char2 = str2.charAt(i);
+
+            if (char1 > char2) {
+                return 1;
             }
-            if (str1.charAt(i) < str2.charAt(i)) {
-                return str1.charAt(i) - str2.charAt(i);
+            if (char1 < char2) {
+                return -1;
             }
         }
-        if (str1.length() > str2.length()) {
-            return str1.length() - str2.length();
 
+        if (str1.length() > str2.length()) {
+            return 1;
         }
         if (str1.length() < str2.length()) {
-            return str1.length() - str2.length();
+            return -1;
         }
 
         return 0;
